@@ -2,4 +2,4 @@
 
 ## 🎨: System design 
 
-![system_design](https://github.com/user-attachments/assets/1e7cc016-3d17-40ea-94b5-3aedcf4baade)
+![system_design](https://github.com/user-attachments/assets/d8c2b26e-591a-4338-9e7c-55e6395512da)
