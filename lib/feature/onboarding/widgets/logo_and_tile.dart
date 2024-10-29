@@ -16,7 +16,7 @@ class LogoAndTitle extends StatelessWidget {
         SizedBox(width: 8.w),
         Text(
           'Docdoc',
-          style: TextStyles.blacBlod24,
+          style: TextStyles.font24blackBlod,
         ),
       ],
     );

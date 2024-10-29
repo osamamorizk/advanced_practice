@@ -31,7 +31,7 @@ class LogoWithOpacityAndImage extends StatelessWidget {
           child: Text(
             'Best Doctor\nAppointment App',
             textAlign: TextAlign.center,
-            style: TextStyles.blueBlod32,
+            style: TextStyles.font32blueBlod,
           ),
         ),
       ],

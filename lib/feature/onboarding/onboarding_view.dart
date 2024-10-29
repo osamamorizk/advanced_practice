@@ -1,7 +1,7 @@
 import 'package:advance_flutter/core/helpers/extension.dart';
 import 'package:advance_flutter/core/routing/routes.dart';
 import 'package:advance_flutter/core/theaming/text_styles.dart';
-import 'package:advance_flutter/feature/onboarding/widgets/custom_get_started_button.dart';
+import 'package:advance_flutter/core/widgets/custom_action_button.dart';
 import 'package:advance_flutter/feature/onboarding/widgets/logo_and_tile.dart';
 import 'package:advance_flutter/feature/onboarding/widgets/logo_with_opacity_and_image.dart';
 import 'package:flutter/material.dart';
@@ -30,10 +30,11 @@ class OnboardingView extends StatelessWidget {
                     Text(
                       textAlign: TextAlign.center,
                       'Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.',
-                      style: TextStyles.greyNormal13,
+                      style: TextStyles.font13GreyNormal,
                     ),
                     SizedBox(height: 32.h),
                     CustomButton(
+                      text: 'Get Started',
                       onPressed: () {
                         context.pushNamed(Routes.loginView);
                       },
