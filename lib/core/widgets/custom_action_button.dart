@@ -3,8 +3,9 @@ import 'package:advance_flutter/core/theaming/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, this.onPressed});
+  const CustomButton({super.key, this.onPressed, required this.text});
   final void Function()? onPressed;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -15,8 +16,8 @@ class CustomButton extends StatelessWidget {
           minimumSize: WidgetStatePropertyAll(Size(double.infinity, 52))),
       onPressed: onPressed,
       child: Text(
-        'Get Started',
-        style: TextStyles.whiteSemiBold16,
+        text,
+        style: TextStyles.font16WhiteSemiBold,
       ),
     );
   }
