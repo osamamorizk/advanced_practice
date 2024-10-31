@@ -19,7 +19,7 @@ class LoginView extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 30.w),
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 verticalSpacing(50.h),
                 WelcomeText(),
