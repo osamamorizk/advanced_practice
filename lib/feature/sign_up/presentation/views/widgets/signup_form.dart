@@ -1,19 +1,19 @@
 import 'package:advance_flutter/core/helpers/app_regex.dart';
 import 'package:advance_flutter/core/helpers/spacing.dart';
 import 'package:advance_flutter/core/widgets/custom_text_form_field.dart';
-import 'package:advance_flutter/feature/login/presentation/manger/cubit/login_cubit.dart';
 import 'package:advance_flutter/core/widgets/password_validations.dart';
+import 'package:advance_flutter/feature/sign_up/presentation/manger/cubit/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EmailAndPassword extends StatefulWidget {
-  const EmailAndPassword({super.key});
+class SignupForm extends StatefulWidget {
+  const SignupForm({super.key});
 
   @override
-  State<EmailAndPassword> createState() => _EmailAndPasswordState();
+  State<SignupForm> createState() => _SignupFormState();
 }
 
-class _EmailAndPasswordState extends State<EmailAndPassword> {
+class _SignupFormState extends State<SignupForm> {
   bool isSecure = true;
   bool hasLowerCase = false;
   bool hasUpperCase = false;
@@ -23,10 +23,17 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
 
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController passwordConfirController;
+  late TextEditingController phoneController;
+  late TextEditingController nameController;
   @override
   void initState() {
-    emailController = context.read<LoginCubit>().emailController;
-    passwordController = context.read<LoginCubit>().passwordController;
+    emailController = context.read<SignupCubit>().emailController;
+    passwordController = context.read<SignupCubit>().passwordController;
+    passwordConfirController =
+        context.read<SignupCubit>().passwordConfirmController;
+    phoneController = context.read<SignupCubit>().numberController;
+    nameController = context.read<SignupCubit>().nameController;
 
     super.initState();
     setUpPassworsController();
@@ -50,9 +57,20 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: context.read<LoginCubit>().formKey,
+      key: context.read<SignupCubit>().formKey,
       child: Column(
         children: [
+          CustomTextFormField(
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter name';
+              }
+            },
+            controller: nameController,
+            keyboardType: TextInputType.visiblePassword,
+            hintText: 'Name',
+          ),
+          verticalSpacing(20),
           CustomTextFormField(
             validator: (value) {
               if (value == null ||
@@ -64,6 +82,19 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
             hintText: 'Email',
+          ),
+          verticalSpacing(20),
+          CustomTextFormField(
+            validator: (value) {
+              if (value == null ||
+                  value.isEmpty ||
+                  AppRegex.isPhoneValid(value)) {
+                return 'Please enter a valid number';
+              }
+            },
+            controller: phoneController,
+            keyboardType: TextInputType.phone,
+            hintText: 'Phone',
           ),
           verticalSpacing(20),
           CustomTextFormField(
@@ -86,6 +117,27 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             obscureText: isSecure,
             hintText: 'Password',
           ),
+          verticalSpacing(20),
+          CustomTextFormField(
+            validator: (value) {
+              if (value == null ||
+                  value.isEmpty ||
+                  passwordConfirController.text != passwordController.text) {
+                return 'Password not match';
+              }
+            },
+            controller: passwordConfirController,
+            keyboardType: TextInputType.visiblePassword,
+            suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    isSecure = !isSecure;
+                  });
+                },
+                icon: Icon(isSecure ? Icons.visibility_off : Icons.visibility)),
+            obscureText: isSecure,
+            hintText: 'Confirm Password',
+          ),
           verticalSpacing(8),
           PasswordValidations(
             hasLowerCase: hasLowerCase,
@@ -97,11 +149,5 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    passwordController.dispose();
-    super.dispose();
   }
 }
