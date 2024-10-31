@@ -11,22 +11,25 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText,
     this.controller,
     this.keyboardType,
+    required this.validator,
   });
   final String? hintText;
   final Widget? suffixIcon;
   final bool? obscureText;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
-  // final String Function(String?) validator;
+  final Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      // height: 50,
       width: double.infinity,
       child: TextFormField(
         controller: controller,
         keyboardType: keyboardType,
-        // validator: validator,
+        validator: (value) {
+          return validator!(value);
+        },
         obscureText: obscureText ?? false,
         style: TextStyle(color: ColorsManger.lightBlack),
         decoration: InputDecoration(
@@ -35,7 +38,7 @@ class CustomTextFormField extends StatelessWidget {
           suffixIcon: suffixIcon,
           filled: true,
           contentPadding:
-              EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+              EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
           fillColor: ColorsManger.darkWhite,
           hintStyle: TextStyles.font14GreyMedium,
           enabledBorder: OutlineInputBorder(
@@ -45,6 +48,14 @@ class CustomTextFormField extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(width: 1.4, color: ColorsManger.mainBlue),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide(width: 1.4, color: Colors.red),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide(width: 1.4, color: Colors.red),
           ),
         ),
       ),
