@@ -44,7 +44,7 @@ class SignUpListener extends StatelessWidget {
         icon: Icon(
           Icons.error,
           color: Colors.red,
-          size: 45,
+          size: 50,
         ),
         content: Text(
           error,

@@ -5,17 +5,20 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
-void getItSetup() {
-  // Register ApiService as a singleton
+getItSetup() {
   getIt.registerSingleton<ApiService>(
-    ApiService(Dio()),
+    ApiService(
+      Dio(),
+    ),
   );
-  // LoginRepoImpl will use the same ApiService instance.
   getIt.registerSingleton<LoginRepoImpl>(
-    LoginRepoImpl(getIt.get<ApiService>()),
+    LoginRepoImpl(
+      getIt.get<ApiService>(),
+    ),
   );
-  // SignUpRepoImplem also shares the same ApiService instance.
   getIt.registerSingleton<SignUpRepoImplem>(
-    SignUpRepoImplem(getIt.get<ApiService>()),
+    SignUpRepoImplem(
+      getIt.get<ApiService>(),
+    ),
   );
 }
