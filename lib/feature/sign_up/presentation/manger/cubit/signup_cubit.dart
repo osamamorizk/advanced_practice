@@ -3,7 +3,6 @@ import 'package:advance_flutter/feature/sign_up/data/models/sign_up_data.dart';
 import 'package:advance_flutter/feature/sign_up/data/repos/signup_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 part 'signup_state.dart';
 

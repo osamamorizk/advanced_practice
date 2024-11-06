@@ -7,4 +7,5 @@ class ColorsManger {
   static Color lightergrey = Color(0xffEDEDED);
   static Color darkWhite = Color(0xffFDFDFF);
   static Color lightBlack = Color(0xff242424);
+  static Color greyNotification = Color(0xffF5F5F5);
 }
