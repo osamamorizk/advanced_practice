@@ -2,7 +2,6 @@ import 'package:advance_flutter/core/models/user_model.dart';
 import 'package:advance_flutter/feature/login/data/repos/login_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 part 'login_state.dart';
 
