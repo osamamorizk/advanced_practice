@@ -1,5 +1,7 @@
 import 'package:advance_flutter/core/di/dependency_injection.dart';
 import 'package:advance_flutter/core/routing/routes.dart';
+import 'package:advance_flutter/feature/home/data/repos/home_repo_impl.dart';
+import 'package:advance_flutter/feature/home/presentation/manger/cubit/home_cubit.dart';
 import 'package:advance_flutter/feature/home/presentation/views/home_view.dart';
 import 'package:advance_flutter/feature/login/data/repos/login_repo_impl.dart';
 import 'package:advance_flutter/feature/login/presentation/manger/cubit/login_cubit.dart';
@@ -20,7 +22,11 @@ class AppRouter {
         );
       case Routes.homeView:
         return MaterialPageRoute(
-          builder: (_) => HomeView(),
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                HomeCubit(getIt.get<HomeRepoImpl>())..getSpecialization(),
+            child: HomeView(),
+          ),
         );
       case Routes.signUpView:
         return MaterialPageRoute(

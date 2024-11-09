@@ -1,4 +1,5 @@
 import 'package:advance_flutter/core/helpers/spacing.dart';
+import 'package:advance_flutter/feature/home/presentation/manger/cubit/home_cubit.dart';
 
 import 'package:advance_flutter/feature/home/presentation/views/widgets/blue_banner.dart';
 import 'package:advance_flutter/feature/home/presentation/views/widgets/doc_category_list_view.dart';
@@ -6,6 +7,7 @@ import 'package:advance_flutter/feature/home/presentation/views/widgets/doctor_l
 import 'package:advance_flutter/feature/home/presentation/views/widgets/doctor_speciality.dart';
 import 'package:advance_flutter/feature/home/presentation/views/widgets/home_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeView extends StatelessWidget {
