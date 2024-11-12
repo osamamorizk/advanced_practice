@@ -23,7 +23,7 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginFailure(errorMessage: fialure.errorMessage));
       },
       (success) async {
-        await CasheHlper.saveData(
+        await CasheHlper.saveSecuredData(
             key: Constants.userToken, value: success.token);
         emit(LoginSuccess(userModel: success));
         DioFactory.setTokenIntoHeaderAfterLogin(success.token);
