@@ -1,4 +1,7 @@
+import 'package:advance_flutter/core/helpers/cashe_helper.dart';
+import 'package:advance_flutter/core/helpers/constants.dart';
 import 'package:advance_flutter/core/models/user_model.dart';
+import 'package:advance_flutter/core/networking/dio_factory.dart';
 import 'package:advance_flutter/feature/login/data/repos/login_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +22,11 @@ class LoginCubit extends Cubit<LoginState> {
       (fialure) {
         emit(LoginFailure(errorMessage: fialure.errorMessage));
       },
-      (success) {
+      (success) async {
+        await CasheHlper.saveData(
+            key: Constants.userToken, value: success.token);
         emit(LoginSuccess(userModel: success));
+        DioFactory.setTokenIntoHeaderAfterLogin(success.token);
       },
     );
   }
