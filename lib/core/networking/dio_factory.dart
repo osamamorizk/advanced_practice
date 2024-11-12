@@ -26,10 +26,11 @@ class DioFactory {
   }
 
   static void addDioHeaders() async {
+    dio?.options.baseUrl = 'https://vcare.integration25.com/api/';
     dio?.options.headers = {
       'Accept': 'application/json',
       'Authorization':
-          'Bearer ${await CasheHlper.getData(key: Constants.userToken)}',
+          'Bearer ${await CasheHlper.getSecuredData(key: Constants.userToken)}',
     };
   }
 

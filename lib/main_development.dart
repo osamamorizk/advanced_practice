@@ -19,7 +19,7 @@ void main() async {
 }
 
 checkIsLoggedIn() async {
-  String userToken = await CasheHlper.getData(key: Constants.userToken);
+  String? userToken = await CasheHlper.getSecuredData(key: Constants.userToken);
   if (userToken.isNullOrEmpty()) {
     isLoggedIn = false;
   } else {
